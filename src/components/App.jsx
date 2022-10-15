@@ -1,48 +1,40 @@
 import React, { Component } from 'react'
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
 class App extends Component {
   state = {
-    name: "",
-    email: "",
-    password: "",
-  };
+    contacts: [],
+    name: ''
+  }
 
-  idElenent = nanoid();
+  // idElenent = nanoid();
 
-  // Відповідає за оновлення стану
   handleChange = evt => {
     const { name, value } = evt.target;
     this.setState({ [name]: value });
-  };
-
-  // Викликається під час відправлення форми
-  handleSubmit = evt => {
-    evt.preventDefault();
-    console.log(`Signed up as: ${this.state.name}`);
-
-    // Проп, який передається формі для виклику під час сабміту
-    this.props.onSubmit({ ...this.state });
+    console.log(evt.target.value)
   };
 
   render() {
     const { name } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name
-          <input
-            type="text"
-            placeholder="Enter name"
-            value={name}
-            onChange={this.handleChange}
-            id={this.idElenent}
-          />
-        </label>
-
-        <button type="submit">Sign up as {name}</button>
-      </form>
+      <section>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+            />
+          </label>
+          <button type="submit">Sign up as {name}</button>
+        </form>
+        <p>hello</p>
+      </section>
     );
   }
 }
