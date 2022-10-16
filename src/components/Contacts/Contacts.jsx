@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import css from './Contacts.module.css'
 
 const Contacts = ({ contactsList, remoteContact }) => (
-    <ul>
+    <ul className={css.contacts__list}>
         {contactsList.map(({ id, name, number }) => (
-            <li key={id}>
+            <li className={css.contacts__item} key={id}>
                 <p>
                     {name}: {number}
                 </p>

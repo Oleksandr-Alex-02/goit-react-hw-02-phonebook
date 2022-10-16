@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import css from './Form.module.css'
 
 export default class Form extends Component {
     state = {
@@ -32,11 +33,12 @@ export default class Form extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
+            <div className={css.blok__form}>
+                <form className={css.form} onSubmit={this.handleSubmit}>
+                    <label className={css.label}>
                         Name
                         <input
+                            className={css.input}
                             onChange={this.handleInputChange}
                             value={this.state.name}
                             type="text"
@@ -49,6 +51,7 @@ export default class Form extends Component {
                     <label>
                         Number
                         <input
+                            className={css.input}
                             onChange={this.handleInputChange}
                             value={this.state.number}
                             type="tel"

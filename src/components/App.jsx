@@ -2,11 +2,18 @@ import React, { Component } from 'react'
 import { nanoid } from 'nanoid';
 import Form from './Form/Form.jsx'
 import Contacts from './Contacts/Contacts.jsx';
-// import { nanoid } from 'nanoid';
+import Filter from './Filter/Filter.jsx';
+
 
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
   }
 
   onSubmit = ({ name, number }) => {
@@ -21,11 +28,16 @@ class App extends Component {
     }));
   }
 
+  contackFilter = evt => {
+    this.setState({ filter: evt.target.value });
+    console.log(evt.target.value)
+  };
+
   getContacts = () => {
-    const { contacts } = this.state;
+    const { filter, contacts } = this.state;
 
     return contacts.filter(contact =>
-      contact.name.toLowerCase()
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
@@ -36,7 +48,7 @@ class App extends Component {
   };
 
   render() {
-    const { contacts } = this.state
+    const { contacts, filter } = this.state
 
     return (
       <section>
@@ -44,10 +56,16 @@ class App extends Component {
         <h2>Contacts</h2>
 
         {contacts.length > 0 ? (
-          <Contacts
-            contactsList={this.getContacts()}
-            remoteContact={this.remoteContact}
-          />
+          <>
+            <Filter
+              contackFilter={this.contackFilter}
+              filter={filter}
+            />
+            <Contacts
+              contactsList={this.getContacts()}
+              remoteContact={this.remoteContact}
+            />
+          </>
         ) : (<p>You have no contacts</p>)
         }
       </section>
