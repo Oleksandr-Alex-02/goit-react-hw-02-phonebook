@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { nanoid } from 'nanoid';
 import Form from './Form/Form.jsx'
+import Contacts from './Contacts/Contacts.jsx';
 // import { nanoid } from 'nanoid';
 
 class App extends Component {
   state = {
     contacts: [],
   }
-
-  // idElenent = nanoid();
 
   onSubmit = ({ name, number }) => {
     const newContact = {
@@ -22,7 +21,19 @@ class App extends Component {
     }));
   }
 
+  getContacts = () => {
+    const { contacts } = this.state;
 
+    return contacts.filter(contact =>
+      contact.name.toLowerCase()
+    );
+  };
+
+  remoteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(({ id }) => id !== contactId),
+    }));
+  };
 
   render() {
     const { contacts } = this.state
@@ -33,11 +44,12 @@ class App extends Component {
         <h2>Contacts</h2>
 
         {contacts.length > 0 ? (
-          <p>hello</p>
-        ) : (<p>dfd</p>)
-
+          <Contacts
+            contactsList={this.getContacts()}
+            remoteContact={this.remoteContact}
+          />
+        ) : (<p>You have no contacts</p>)
         }
-
       </section>
     );
   }

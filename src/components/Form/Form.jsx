@@ -24,7 +24,10 @@ export default class Form extends Component {
     };
 
     reset = () => {
-        this.setState({ name: '' })
+        this.setState({
+            name: '',
+            number: '',
+        })
     }
 
     render() {
@@ -32,6 +35,7 @@ export default class Form extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
+                        Name
                         <input
                             onChange={this.handleInputChange}
                             value={this.state.name}
@@ -43,6 +47,7 @@ export default class Form extends Component {
                         />
                     </label>
                     <label>
+                        Number
                         <input
                             onChange={this.handleInputChange}
                             value={this.state.number}
