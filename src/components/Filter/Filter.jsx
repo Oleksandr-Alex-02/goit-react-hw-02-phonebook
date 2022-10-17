@@ -16,6 +16,7 @@ const Filter = ({ filter, contackFilter }) => (
 
 Filter.propTypes = {
     contackFilter: PropTypes.func.isRequired,
+    filter: PropTypes.string.isRequired,
 };
 
 export default Filter;

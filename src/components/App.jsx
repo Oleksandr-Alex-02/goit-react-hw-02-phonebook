@@ -30,14 +30,13 @@ class App extends Component {
 
   contackFilter = evt => {
     this.setState({ filter: evt.target.value });
-    console.log(evt.target.value)
   };
 
   getContacts = () => {
     const { filter, contacts } = this.state;
 
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
+      contact.name.includes(filter)
     );
   };
 

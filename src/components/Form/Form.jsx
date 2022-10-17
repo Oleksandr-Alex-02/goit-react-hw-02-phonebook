@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import css from './Form.module.css'
 
 export default class Form extends Component {
@@ -66,4 +68,8 @@ export default class Form extends Component {
             </div>
         )
     }
+}
+
+Form.propTypes = {
+    onSubmit: PropTypes.func.isRequired
 }

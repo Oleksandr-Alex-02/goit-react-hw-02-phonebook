@@ -23,10 +23,12 @@ const Contacts = ({ contactsList, remoteContact }) => (
 Contacts.propTypes = {
     contactsList: PropTypes.arrayOf(
         PropTypes.shape({
+            id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             number: PropTypes.string.isRequired,
         })
-    )
+    ),
+    remoteContact: PropTypes.func.isRequired,
 }
 
 export default Contacts;
