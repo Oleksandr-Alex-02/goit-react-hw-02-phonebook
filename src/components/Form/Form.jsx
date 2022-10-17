@@ -61,7 +61,7 @@ export default class Form extends Component {
                             required
                         />
                     </label>
-                    <button type="submit">Sign up as</button>
+                    <button type="submit">App contacts</button>
                 </form>
             </div>
         )
